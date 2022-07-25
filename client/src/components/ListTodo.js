@@ -10,7 +10,6 @@ export const ListTodo = () => {
     try {
       const response = await fetch("http://localhost:3000/todos");
       const jsonData = await response.json();
-
       setTodos(jsonData);
     } catch (error) {
       console.error(error.message);
@@ -23,7 +22,9 @@ export const ListTodo = () => {
         method: "DELETE",
       });
 
-      setTodos(todos.filter(todo => todo.tid !== id));
+      if (deleteTodo) {
+        setTodos(todos.filter(todo => todo.tid !== id));
+      }      
     } catch (error) {
       console.error(error.message);
     }
@@ -31,7 +32,7 @@ export const ListTodo = () => {
 
   useEffect(() => {
     getTodos();
-  });
+  },[]);
 
   return (
     <Fragment>

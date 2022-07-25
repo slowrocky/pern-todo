@@ -37,7 +37,7 @@ module.exports = class TodosModel {
       const todos = await db.query("SELECT * FROM todo");
 
       if (todos.rows?.length) {
-        return todos.rows[0];
+        return todos.rows;
       }
       return [];
     } catch (err) {
@@ -48,7 +48,7 @@ module.exports = class TodosModel {
   async update(id, description) {
     try {
       const updateTodo = await db.query(
-        "UPDATE todo SET description = $1 WHERE tid = $2",
+        "UPDATE todo SET description = $1 WHERE tid = $2 RETURNING *",
         [description, id]
       );
 
@@ -64,7 +64,7 @@ module.exports = class TodosModel {
 
   async delete(id) {
     try {
-      const deleteTodo = await db.query("DELETE FROM todo WHERE tid = $1", [
+      const deleteTodo = await db.query("DELETE FROM todo WHERE tid = $1 RETURNING *", [
         id,
       ]);
 

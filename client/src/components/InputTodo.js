@@ -1,7 +1,9 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 
 export const InputTodo = () => {
   const [description, setDescription] = useState("");
+
+  
 
   const onSubmitForm = async (e) => {
     e.preventDefault();
@@ -15,7 +17,9 @@ export const InputTodo = () => {
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(body),
       });
-      console.log(response);
+      window.location.reload(false)
+      //console.log(response);
+
     } catch (error) {
       console.error(error.message);
     }
@@ -30,10 +34,7 @@ export const InputTodo = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        <button
-          type="submit"
-          className="btn btn-success"
-        >
+        <button type="submit" className="btn btn-success">
           Add
         </button>
       </form>

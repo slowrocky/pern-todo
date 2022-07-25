@@ -19,8 +19,8 @@ export const EditTodo = ({ todo }) => {
           body: JSON.stringify(body),
         }
       );
-
-      console.log(updateTodo);
+      setDescription(description);
+      window.location.reload(false);
     } catch (error) {
       console.error(error.message);
     }
@@ -66,6 +66,7 @@ export const EditTodo = ({ todo }) => {
               <button
                 type="button"
                 className="btn btn-warning"
+                data-dismiss="modal"
                 onClick={(e) => updateDescription(e)}
               >
                 Edit
