@@ -12,7 +12,7 @@ export const InputTodo = () => {
     }
     try {
       const body = { description };
-      const response = await fetch("http://localhost:3000/todos", {
+      const response = await fetch("https://localhost:3000/todos", {
         method: "POST",
         headers: { "Content-type": "application/json" },
         body: JSON.stringify(body),

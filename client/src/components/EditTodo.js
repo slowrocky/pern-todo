@@ -12,7 +12,7 @@ export const EditTodo = ({ todo }) => {
     try {
       const body = { description };
       const updateTodo = await fetch(
-        `http://localhost:3000/todos/${todo.tid}`,
+        `https://localhost:3000/todos/${todo.tid}`,
         {
           method: "PUT",
           headers: { "Content-type": "application/json" },
